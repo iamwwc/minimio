@@ -9,5 +9,5 @@ macro_rules! syscall {
         }
     }};
 }
-mod selector;
+pub mod selector;
 pub(crate) use self::selector::{Selector};
