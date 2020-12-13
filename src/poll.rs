@@ -1,6 +1,5 @@
-use std::io;
-
-use crate::sys;
+use std::{io, time::Duration};
+use crate::{sys, Events};
 
 pub struct Poll {
     registry: Registry,
@@ -18,5 +17,8 @@ impl Poll {
         sys::Selector::new().map(|selector| Poll {
             registry: Registry { selector},
         })
+    }
+    pub fn poll(& mut self, events: &mut Events, timeout: Option<Duration>) -> io::Result<()>{
+        self.registry.selector.select(events, timeout)
     }
 }
