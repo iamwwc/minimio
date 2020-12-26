@@ -1,5 +1,4 @@
-实现一个 mini 的 MIO
-
+实现一个 mini 的 MIO，最后实现 [mini-tokio](https://github.com/iamwwc/mini-tokio) 
 1. 先实现单线程 Selector socket 模型
 2. 实现多线程的 file read 支持
 
