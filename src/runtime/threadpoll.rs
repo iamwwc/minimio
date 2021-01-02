@@ -1,3 +1,3 @@
-pub (super) struct Worker {
-    
+pub struct Spawner {
+
 }
