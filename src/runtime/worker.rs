@@ -1,21 +1,20 @@
 use std::{sync::Arc, vec};
 
-use super::task::Task;
+use super::task::{self, Task};
 
 
 type Local<T> = Vec<Task<T>>;
 pub (super) struct Worker {
-    local_queue: Arc<Local>
+    local_queue: Local<task::Notified>
 }
-pub fn create_worker() -> Vec<Worker>{
+pub fn create_workers(size: usize) -> Vec<Arc<Worker>>{
     let workers = vec![];
     let one_queue = vec![];
-    let counts = num_cpus::get();
     let a_one_queue = Arc::new(one_queue);
-    for i in 0 .. counts {
-        workers.push(Worker {
+    for i in 0 .. size {
+        workers.push(Arc::new(Worker {
             local_queue: a_one_queue.clone()
-        })
+        }))
     }
     workers
 }
